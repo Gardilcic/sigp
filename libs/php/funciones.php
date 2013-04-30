@@ -1,11 +1,11 @@
 <?php
-	require_once('sql_sigp.php');
+	//require_once('sql_sigp.php');
 	//require_once('generales.php');
 	
-function get_usuarios()
+function get_usuarios($sql)
 {
-	$cns = "select * from proyectos";
-	$a = get_datos($cns);
+	//$cns = "select * from proyectos";
+	$a = get_datos($sql);
 	$cont=1;
 	$respuesta="<tr><td>N</td><td>Nombre</td><td>Apellidos</td><td>RUT</td><td>Estado</td><td>Perfil</td></tr>";
 	while(odbc_fetch_row($a))

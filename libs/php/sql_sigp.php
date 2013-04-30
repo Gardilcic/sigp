@@ -2,10 +2,10 @@
 
 function get_datos($cns)
 {
-	// Se define la cadena de conexión
-	$dsn = "Driver={SQL Server};Server=GARDILCIC-014;Database=sigp_documentacion;Integrated Security=SSPI;Persist Security Info=False;";
-	// Se realiza la conexón con los datos especificados anteriormente
-	$conn = odbc_connect( $dsn, 'gestiondocs', '1q2w3e4r5t6y' );
+	// Se define la cadena de conexiÃ³n
+	$dsn = "Driver={SQL Server};Server=GARDILCIC-014;Database=sigp_usuarios;Integrated Security=SSPI;Persist Security Info=False;";
+	// Se realiza la conexÃ³n con los datos especificados anteriormente
+	$conn = odbc_connect( $dsn, 'adminusuarios', '1q2w3e4r5t6y' );
 	//$conn = odbc_connect( $dsn, 'indumotora', '' );
 	if (!$conn)
 	{
@@ -27,7 +27,7 @@ function get_datos($cns)
 		$resultado=odbc_result($rs,"descripcion");
 		echo $resultado;
 	}*/
-	// Se cierra la conexión
+	// Se cierra la conexiÃ³n
 	//odbc_close( $conn );
 	return $rs;
 	odbc_close( $conn );
@@ -41,10 +41,10 @@ function cierra_conn()
 
 function set_datos($cns)
 {
-	// Se define la cadena de conexión
+	// Se define la cadena de conexiÃ³n
 	$dsn = "Driver={SQL Server};Server=GARDILCIC-014;Database=sigp_documentacion;Integrated Security=SSPI;Persist Security Info=False;";
-	// Se realiza la conexón con los datos especificados anteriormente
-	$conn = odbc_connect( $dsn, 'sigp_documentacion', '1q2w3e4r5t6y' );
+	// Se realiza la conexÃ³n con los datos especificados anteriormente
+	$conn = odbc_connect( $dsn, 'gestiondocs', '1q2w3e4r5t6y' );
 	//$conn = odbc_connect( $dsn, 'indumotora', '' );
 	if (!$conn)
 	{
@@ -54,7 +54,7 @@ function set_datos($cns)
 	//$sql = "select nombre, descripcion from estacion";
 	// Se ejecuta la consulta y se guardan los resultados en el recordset rs
 	$rs = odbc_exec( $conn, $cns );
-	// Se cierra la conexión
+	// Se cierra la conexiÃ³n
 	odbc_close( $conn );
 }
 ?>

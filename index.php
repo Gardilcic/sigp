@@ -10,7 +10,8 @@
 	<link rel="icon" type="image/png" href="libs/img/logo.png" />
     <link href="libs/css/bootstrap.css" rel="stylesheet">
     <link href="libs/css/bootstrap-responsive.css" rel="stylesheet">
-
+    <link href="libs/css/jquery.tablesorter.pager.css" rel="stylesheet">
+    <link href="libs/css/theme.bootstrap.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->	
@@ -22,183 +23,193 @@
 	<?php include('encabezado.php'); ?>
 
     <div class="container">
-    
-		<script type="text/javascript" src="libs/js/generales.js"></script>
+    	<legend>Mantenedor de Usuarios</legend>
+    	
+    	<p style="text-align:right;"><a class='btn btn-success' href='#dlgAgregar' data-toggle='modal'><i class='icon-file icon-white'></i>Nuevo Usuario</a></p>
+    	
+		<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover" id="example">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellidos</th>
+					<th>R.U.T.</th>
+					<th>Perfil</th>
+					<th>Estado</th>
+					<th>Operaciones</th>
+				</tr>
+			</thead>
+			<tbody id="tabla_body">
+			</tbody>
+			<tfoot>
+				<tr>
+					<th data-column="0">Nombre</th>
+					<th data-column="1">Apellidos</th>
+					<th data-column="2">R.U.T.</th>
+					<th data-column="3">Perfil</th>
+					<th data-column="4">Estado</th>
+					<th data-column="5">Operaciones</th>
+				</tr>
+				<tr>
+					<th colspan="7" class="pager form-horizontal tablesorter-pager" data-column="0" style="">
+						<button class="btn first disabled"><i class="icon-step-backward"></i></button>
+						<button class="btn prev disabled"><i class="icon-arrow-left"></i></button>
+						<span class="pagedisplay">1 - 10 / 29 (50)</span> <!-- this can be any element, including an input -->
+						<button class="btn next"><i class="icon-arrow-right"></i></button>
+						<button class="btn last"><i class="icon-step-forward"></i></button>
+						<select class="pagesize input-mini" title="Select page size">
+							<option selected="selected" value="10">10</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option value="40">40</option>
+						</select>
+						<select class="pagenum input-mini" title="Select page number"><option>1</option><option>2</option><option>3</option></select>
+					</th>
+				</tr>
+			</tfoot>
 
-		<script type="text/javascript">
-		
-		function crea_itemizado()
-		{
-			var codigo = document.getElementById('codigo_pmo').value;
-			var descripcion= document.getElementById('nombre_pmo').value;
-			var padre= document.getElementById('dependencia').value;
-			var usuario = 1;
-			var estado = document.getElementById('estado').value;
-			var unidad_medida = document.getElementById('unidad_medida').value;
-			if(valida_campo(codigo,0)== true && valida_campo(descripcion,0) == true)
-			{
-				$.post("libs/php/jquery/crea_itemizado.php", { codigo:codigo, descripcion:descripcion, padre:padre,usuario:usuario, estado:estado, unidad_medida:unidad_medida},
-				function(data)
-				{
-					alert('Realizado');
-					location.reload();
-				}
-				);
-			}
-		}
-		
-		function actualiza_itemizado()
-		{
-			var codigo = document.getElementById('codigo_pmo').value;
-			var descripcion= document.getElementById('nombre_pmo').value;
-			var padre= document.getElementById('dependencia').value;
-			var usuario = 1;
-			var estado = document.getElementById('estado').value;
-			var unidad_medida = document.getElementById('unidad_medida').value;
-			var id= document.getElementById('itemizado_id').value;
-			if(valida_campo(id,0)== true)
-			{
-				$.post("libs/php/jquery/actualiza_itemizado.php", { codigo:codigo, descripcion:descripcion, padre:padre,usuario:usuario, estado:estado, unidad_medida:unidad_medida, id:id},
-				function(data)
-				{
-					//alert(data);
-					//document.getElementById('resultado').innerHTML=data;
-					alert('Realizado');
-					location.reload();
-				}
-				);
-			}
-		}
-		
-		function muestra_itemizado()
-		{
-			var itemizado_id=document.getElementById('itemizado_lista').value;
-			if(itemizado_id!=0)
-			{
-				$.post("libs/php/jquery/get_datos_itemizado.php", { itemizado_id:itemizado_id},
-				function(data)
-				{
-					datos = data.split('&&');
-					document.getElementById('codigo_pmo').value=datos[0];
-					document.getElementById('nombre_pmo').value=datos[2];
-					document.getElementById('dependencia').value=datos[1];
-					document.getElementById('estado').value=datos[3];
-					document.getElementById('unidad_medida').value=datos[4];
-					document.getElementById('itemizado_id').value=datos[5];
-				}
-				);
-			}
-			else
-			{
-				alert('Debe elegir un Itemizado válido');
-			}
-		}
-		
-		function recarga()
-		{
-			location.reload();
-		}
-		</script>
-		<div name="capa_mantenedor" style="margin-top:5px; margin-left:5px; position:absolute;">
-			<form name="frm_mantenedor_itemizado" method="post">
-				<table border="0">
-					<tr>
-						<td>
-							Versi&oacute;n:
-						</td>
-						<td>
-							<select name="version" id="version">
-							
-							</select>
-						</td>
-						<td>
-							Lista de itemizado existente:
-						</td>
-						<td>
-							<select name="itemizado_lista" id="itemizado_lista">
-								<option value="0">Elija</option>
-													</select>
-						</td>
-						<td>
-							<input type="button" name="btn_ver_itemizado" id="btn_ver_itemizado" value="Mostrar" onclick="muestra_itemizado();" />
-						</td>
-					</tr>
-				</table>
-				<hr />
-				<br/>
-				<table border="0">
-					<tr>
-						<td>
-							C&oacute;digo:
-						</td>
-						<td>
-							<input type="text" name="codigo_pmo" id="codigo_pmo" size="13" />
-						</td>
-						<td>
-							&nbsp;&nbsp;&nbsp;
-						</td>
-						<td>
-							Nombre / descripci&oacute;n:
-						</td>
-						<td>
-							<input type="text" name="nombre_pmo" id="nombre_pmo" size="13" maxlength="1024" />
-						</td>
-						<td>
-							&nbsp;&nbsp;&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Estado:
-						</td>
-						<td>
-							<select name="estado" id="estado" style="width:120px; border:0px;">
-								<option value='1'>Activo</option><option value='2'>Inactivo</option>					</select>
-						</td>
-						<td>
-							&nbsp;&nbsp;&nbsp;
-						</td>
-						<td>
-							Unidad de medida:
-						</td>
-						<td>
-							<select name="unidad_medida" id="unidad_medida" style="width:120px; border:0px;">
-								<option value='4'>M2</option><option value='3'>M3</option><option value='1'>No aplica</option><option value='2'>Unidad</option>					</select>
-						</td>
-						<td>
-							<input type="hidden" name="itemizado_id" id="itemizado_id" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Dependencia:
-						</td>
-						<td>
-							<select name="dependencia" id="dependencia" style="width:140px; border:0px;">
-								<option value="0">No tiene</option>
-													</select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="button" name="btn_agregar" id="btn_agregar" value="Agregar" onclick="crea_itemizado();" />
-						</td>
-						<td></td>
-						<td>
-							<input type="button" name="btn_actualiza" id="btn_actualiza" value="Actualizar" onclick="actualiza_itemizado();" />
-						</td>
-						<td></td>
-						<td>
-							<input type="button" name="btn_refresh" id="btn_refresh" value="Recargar" onclick="recarga();"/>
-						</td>
-					</tr>
-				</table>
-			</form>
-			<div id="resultado" name="resultado"></div>
+		</table>
+				
+		<!-- DIALOGO MODAL : NUEVO USUARIO -->
+		<div id="dlgAgregar" class="modal hide fade" tabindex="-1" role="dialog">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">Nuevo Usuario</h3>
+		  </div>
+		  <div class="modal-body">
+		    <form class="form-horizontal" id="form_nuevo">  
+			    <div class="alert mensajes" style="display:none;">
+				  <button type="button" class="close" onclick="$('.alert').hide()">&times;</button>
+				  <strong>Warning!</strong><span id="mensaje"></span>
+				</div>
+		        <fieldset>  
+		          <div class="control-group">  
+		            <label class="control-label" for="perfiles">Perfil</label>  
+		            <div class="controls">  
+		                <select id="perfiles">  
+		              	</select>	            
+		            </div>  
+		          </div>
+		          <div class="control-group">  
+		            <label class="control-label" for="NuevoNombre">Nombre</label>  
+		            <div class="controls">  
+		              <input type="text" class="input-xlarge" id="NuevoNombre" placeholder="Ingrese su Nombre"><br/><br/>   
+		              <input type="text" class="input-xlarge" id="NuevoApellido" placeholder="Ingrese su Apellido">  
+		              <!--p class="help-block"></p-->  
+		            </div>  
+		          </div>
+		          <div class="control-group">  
+		            <label class="control-label" for="NuevoRut">R.U.T.</label>  
+		            <div class="controls">  
+		              <input type="text" class="input-large" id="NuevoRut" placeholder="Ingrese su RUT 12345678-9" required="required">   
+		            </div>  
+		          </div>
+		          <div class="control-group">  
+		            <label class="control-label" for="NuevoClave">Clave</label>  
+		            <div class="controls">  
+		              <input type="password" class="input-large" id="NuevoClave" placeholder="Ingrese su Clave">   
+		            </div>  
+		          </div>
+				  <div class="control-group">  
+		            <label class="control-label" for="select01">Estado</label>  
+		            <div class="controls">  
+		                <select id="estados">  
+		              	</select>	            
+		            </div>  
+		          </div>
+		        </fieldset>  
+			</form>  
+		  </div>
+		  <div class="modal-footer">
+		    <button id="btnNuevoCancelar" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+		    <button id="btnNuevoAceptar" class="btn btn-primary">Guardar</button>
+		  </div>
 		</div>
+		<!-- FIN DIALOGO MODAL : NUEVO USUARIO -->
+		
+		<!-- DIALOGO MODAL : MODIFICAR USUARIO -->
+		<div id="dlgModificar" class="modal hide fade" tabindex="-1" role="dialog">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">Editar Usuario</h3>
+		  </div>
+		  <div class="modal-body">
+		    <form class="form-horizontal" id="form_nuevo">  
+			    <div class="alert mmensajes" style="display:none;">
+				  <button type="button" class="close" onclick="$('.alert').hide()">&times;</button>
+				  <strong>Warning!</strong><span id="mmensaje"></span>
+				</div>
+		        <fieldset>  
+		          <div class="control-group">  
+		            <label class="control-label" for="mperfiles">Perfil</label>  
+		            <div class="controls">  
+		            	<input type="hidden" class="input-xlarge" id="IdRegistro">
+		                <select id="mperfiles">  
+		              	</select>	            
+		            </div>  
+		          </div>
+		          <div class="control-group">  
+		            <label class="control-label" for="EditarNombre">Nombre</label>  
+		            <div class="controls">  
+		              <input type="text" class="input-xlarge" id="EditarNombre" placeholder="Ingrese su Nombre"><br/><br/>   
+		              <input type="text" class="input-xlarge" id="EditarApellido" placeholder="Ingrese su Apellido">  
+		              <!--p class="help-block"></p-->  
+		            </div>  
+		          </div>
+		          <div class="control-group">  
+		            <label class="control-label" for="EditarRut">R.U.T.</label>  
+		            <div class="controls">  
+		              <input type="text" class="input-large" id="EditarRut" placeholder="Ingrese su RUT 12345678-9" required="required">   
+		            </div>  
+		          </div>
+		          <div class="control-group">  
+		            <label class="control-label" for="EditarClave">Clave</label>  
+		            <div class="controls">  
+		              <input type="password" class="input-large" id="EditarClave" placeholder="Ingrese su Clave">   
+		            </div>  
+		          </div>
+				  <div class="control-group">  
+		            <label class="control-label" for="mestados">Estado</label>  
+		            <div class="controls">  
+		                <select id="mestados">  
+		              	</select>	            
+		            </div>  
+		          </div>
+		        </fieldset>  
+			</form>  
+		  </div>
+		  <div class="modal-footer">
+		    <button id="btnEditarCancelar" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+		    <button id="btnEditarAceptar" class="btn btn-primary">Guardar</button>
+		  </div>
+		</div>
+		<!-- FIN DIALOGO MODAL : MODIFICAR USUARIO -->
 
+		<!-- DIALOGO MODAL : ELIMINAR USUARIO -->
+		<div id="dlgEliminar" class="modal hide fade" tabindex="-1" role="dialog">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">Confirmacion : Eliminar Usuario</h3>
+		  </div>
+		  <div class="modal-body">
+		    <form class="form-horizontal" id="form_nuevo">  
+			    <div class="alert mmensajes" style="display:none;">
+				  <button type="button" class="close" onclick="$('.alert').hide()">&times;</button>
+				  <strong>Warning!</strong><span id="mmensaje"></span>
+				</div>
+				<p>Esta seguro que desea borrar este registro del sistema ?</p>		        
+			</form>  
+		  </div>
+		  <div class="modal-footer">
+		    <button id="btnEliminarCancelar" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+		    <button id="btnEliminarAceptar" class="btn btn-danger">Eliminar</button>
+		  </div>
+		</div>
+		<!-- FIN DIALOGO MODAL : ELIMINAR USUARIO -->
+
+		
     </div> <!-- /container -->
     
 	<?php include('piepagina.php'); ?>  
-
+	<script type="text/javascript" src="controlador/usuarios.js"></script>
+	
 </body></html>

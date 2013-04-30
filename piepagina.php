@@ -18,8 +18,14 @@
     <script src="libs/js/bootstrap-collapse.js"></script>
     <script src="libs/js/bootstrap-carousel.js"></script>
     <script src="libs/js/bootstrap-typeahead.js"></script>
+
+<script type="text/javascript" src="libs/js/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="libs/js/jquery.tablesorter.widgets.js"></script>
+<script type="text/javascript" src="libs/js/jquery.tablesorter.pager.js"></script>
+
     <script>
     	$(document).ready(function() {
+    		
    			$("#carousel").waterwheelCarousel({
    			clickedCenter: function($clickedItem) {
 			      // $clickedItem is a jQuery wrapped object describing the image that was clicked.
