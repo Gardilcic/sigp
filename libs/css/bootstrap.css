@@ -1933,7 +1933,7 @@ table {
 
 .table th,
 .table td {
-  padding: 3px 8px;
+  padding: 0px 8px;
   line-height: 20px;
   text-align: left;
   vertical-align: top;
@@ -3108,7 +3108,7 @@ button.close {
 	border-top: 0 none rgba(0, 0, 0, 0.1);
 	border-bottom: 0 none #b3b3b3;
 	display: inline;
-    padding: 4px 12px;
+    padding: 2px 10px;
     margin-bottom: 0;
   *margin-left: .3em;
     font-size: 14px;
@@ -5944,4 +5944,9 @@ a.badge:focus {
 
 .affix {
   position: fixed;
+}
+
+.sombreado {
+    background-color: #6d6d6d;
+    color: #fff;
 }

@@ -71,9 +71,77 @@ if ($_POST['funcion'] == "ValidarUsuario") {
     echo json_encode($objeto);
 }
 
-
-
 if ($_POST['funcion'] == "ListarUsuarios") {
+
+        $nombre_usuario = "jarisaca";
+        $servidor = "gardilcic-001.grupogardilcic.cl";
+        $puerto = "389";
+        //$host = "teniente-002.grupogardilcic.cl";
+        $usuario = $nombre_usuario."@grupogardilcic.cl";
+        $clave = "ja.2013";
+
+        $ldap = ldap_connect($servidor, $puerto) or die("Imposible Conectar");
+        ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3) or die("Imposible asignar el Protocolo LDAP");
+        ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+        
+        if ($ldap ) {
+            // realizando la autenticación
+            $ldapbind = @ldap_bind($ldap, $usuario, $clave);
+            if ($ldapbind) {
+                // verificación del enlace
+                $dn = "CN=sigp,OU=Departamento Informática,OU=Gerencia GAF,OU=Gardilcic - Oficina Central,OU=Constructora Gardilcic Ltda.,DC=grupogardilcic,DC=cl";
+                $filter = '(&(CN=sigp))';
+                $busqueda = ldap_search($ldap, $dn, $filter) or die("Error en la busqueda");
+                $datos = ldap_get_entries($ldap, $busqueda);
+                
+                //print_r($datos);
+                
+                if ($datos["count"] > 0) {
+                    foreach($datos[0]['member'] as $member) {
+                        
+                        if(!is_numeric($member)){
+                            $dn = $member;
+                            $campos = array("mail", "samaccountname", "uid", "displayname");
+                            $filter = '(&(objectClass=person))';
+                            $busqueda = ldap_search($ldap, $dn, $filter, $campos) or die("Error en la busqueda");
+                            $datos_integrante = ldap_get_entries($ldap, $busqueda);
+                            
+                            $datos_usuario["nombre"] = utf8_encode( $datos_integrante[0]["displayname"][0] );
+                            $datos_usuario["usuario"] = utf8_encode( $datos_integrante[0]["samaccountname"][0] );
+                            $usuarios[] = $datos_usuario;
+                            
+                            //print_r($datos_integrante[0]["samaccountname"][0]);                            
+                            /*$integrante = explode( ",", utf8_encode( $member ) );
+                            $integrante = explode( "=", $integrante[0]);
+                            $datos_usuario["usuario"] = ( $integrante[1] );
+                            $usuarios[] = $datos_usuario;*/
+                        }
+                    }
+                    $respuesta["error"] = "0";
+                    $respuesta["mensaje"] = "Usuario correcto.";
+                    $respuesta["datos"] = $usuarios;
+                } else {
+                    $respuesta["error"] = "-1";
+                    $respuesta["mensaje"] = "El usuario ingresado no existe, por favor verifique.";
+                }
+            } else {
+                $respuesta["error"] = ldap_errno($ldap);
+                $respuesta["mensaje"] = "El usuario o clave ingreso es incorrecto, por favor verifique.";
+            }
+            
+            ldap_unbind($ldap);
+        }
+        else {
+            $respuesta["error"] = "-2";
+            $respuesta["mensaje"] = "No es posible conectarse al servidor de autenticación.";
+        }
+
+        
+    $objeto[] = $respuesta;
+    echo json_encode($usuarios);
+}
+
+/*if ($_POST['funcion'] == "ListarUsuarios") {
     //echo "ListarUsuarios";
 
     $cns = "SELECT usu.id,usu.nombre,usu.apellidos,usu.rut,usu.clave,usu.id_perfil,per.nombre as perfil_nombre," .
@@ -103,7 +171,8 @@ if ($_POST['funcion'] == "ListarUsuarios") {
     $objeto .= "]";
 
     echo $objeto;
-}
+}*/
+
 if ($_POST['funcion'] == "ListarPerfiles") {
     //echo "ListarUsuarios";
 
@@ -191,5 +260,17 @@ if ($_POST['funcion'] == "GrabarUsuario") {
         $respuesta = 1;
 
     echo $respuesta;
+}
+
+if ($_POST['funcion'] == "AsociarUsuario") {
+    //echo "ListarUsuarios";
+
+    $cns = "EXECUTE [sigp].[dbo].[copia_permisos_usuariospermisos] @id_usuario=N'$_POST[idUsuario]',@id_perfil=$_POST[idPerfil]";
+
+    $a = get_datos($cns);
+        while (odbc_fetch_row($a)) {
+            $respuesta = odbc_result($a, "respuesta");
+        }
+        echo $respuesta;
 }
 ?>

@@ -95,14 +95,19 @@
                             <li><a href="adm_regiones.php">Regiones</a></li>  
                             <li><a href="adm_pais.php">Paises</a></li>  
                             <li><a href="adm_monedas.php">Monedas</a></li>  
-                            <li><a href="adm_estados.php">Estados</a></li>  
+                            <li><a href="adm_estados.php">Estados</a></li>
+							<li class="divider"></li>
+							<li><a href="adm_perfiles.php">Perfiles</a></li>
+							<li><a href="adm_permisos.php">Permisos</a></li>
+							<li><a href="adm_modulos.php">M&oacute;dulos</a></li>
+							<li><a href="adm_permisos_perfil.php">Asociar Permiso a perfil</a></li>
                         </ul>  
                     </li>  
                     <li><a href="avance_diario.php">Avance Diario</a></li>  
                     <li><a href="#"></a></li>  
                     <li><a href="#"></a></li>  
-                    <li><a href="#"></a></li>                      
-                </ul>  
+                    <li><a href="#"></a></li>                     
+                </ul> 
             </div>  
         </div>  
     </div>  
