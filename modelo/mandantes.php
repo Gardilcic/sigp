@@ -3,7 +3,7 @@
 	
 	if($_POST['funcion']=="ListarMandantes"){
 		
-		$var1 = "SELECT * FROM sigp.dbo.mandantes" ;	
+		$var1 = "select * from dbo.empresas_mandantes m INNER JOIN dbo.empresas e ON m.id_empresa = e.id" ;	
 							
 		$a = get_datos_sigp($var1);
 		

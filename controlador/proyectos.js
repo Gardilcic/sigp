@@ -145,7 +145,7 @@ $(window).load(function() {
         url: "modelo/empresas.php",
         async: false,
         data: {
-            funcion: "ListarEmpresas"
+            funcion: "listar_empresas"
         },
         success: function(datos) {
             var objeto = eval(datos);

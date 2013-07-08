@@ -70,15 +70,15 @@
     </div>
 
     <div id="carousel">
-        <img src="libs/img/modulo_control_avance.png" alt="Modulo de Control de Avance" />
+        <img src="libs/img/modulo_control_avance.png" alt="Modulo de Control de Avance" menu="menu1"/>
         <img src="libs/img/modulo_planificacion.png" alt="Modulo de Planificacion" menu="menu2" />
-        <img src="libs/img/modulo_planificacion_integrada.png" alt="Modulo de Planificacion Integrada" />
-        <img src="libs/img/modulo_gestion_costos.png" alt="Modulo de Gestion de Costos" />
-        <img src="libs/img/modulo_pcm.png" alt="Modulo PCM" />
-        <img src="libs/img/modulo_administracion.png" alt="Modulo de Administracion" menu="menu1" />
+        <img src="libs/img/modulo_planificacion_integrada.png" alt="Modulo de Planificacion Integrada" menu="menu3" />
+        <img src="libs/img/modulo_gestion_costos.png" alt="Modulo de Gestion de Costos" menu="menu4" />
+        <img src="libs/img/modulo_pcm.png" alt="Modulo PCM" menu="menu5" />
+        <img src="libs/img/modulo_administracion.png" alt="Modulo de Administracion" menu="menu6" />
     </div>
     <br />
-    <div class="navbar barra-menu" id="menu1" >  
+    <div class="navbar barra-menu" id="menu6" >  
         <div class="navbar-inner">  
             <div class="container">  
                 <ul class="nav">  
@@ -91,48 +91,98 @@
                             <li><a href="subproyectos.php">Sub-Proyectos</a></li>
                             <li><a href="turno.php">Turnos</a></li>
                             <li class="divider"></li>  
-                            <li><a href="adm_usuarios.php">Usuarios</a></li>  
                             <li><a href="adm_regiones.php">Regiones</a></li>  
                             <li><a href="adm_pais.php">Paises</a></li>  
                             <li><a href="adm_monedas.php">Monedas</a></li>  
                             <li><a href="adm_estados.php">Estados</a></li>
-							<li class="divider"></li>
-							<li><a href="adm_perfiles.php">Perfiles</a></li>
-							<li><a href="adm_permisos.php">Permisos</a></li>
-							<li><a href="adm_modulos.php">M&oacute;dulos</a></li>
-							<li><a href="adm_permisos_perfil.php">Asociar Permiso a perfil</a></li>
+                            <li class="divider"></li>
+                            <li><a href="adm_perfiles.php">Perfiles</a></li>
+                            <li><a href="adm_permisos.php">Permisos</a></li>
+                            <li><a href="adm_modulos.php">M&oacute;dulos</a></li>
+                            <li><a href="adm_permisos_perfil.php">Asociar Permiso a perfil</a></li>
+                            <li><a href="adm_unidades_registro.php">Unidades de Registro</a></li>                            
                         </ul>  
                     </li>  
-                    <li><a href="avance_diario.php">Avance Diario</a></li>  
-                    <li><a href="#"></a></li>  
-                    <li><a href="#"></a></li>  
-                    <li><a href="#"></a></li>                     
+                    <li><a href="avance_diario.php">Consultas e Informes</a></li>  
                 </ul> 
             </div>  
         </div>  
     </div>  
+    <div class="navbar barra-menu" id="menu1" style="display:none;">  
+        <div class="navbar-inner">  
+            <div class="container">  
+                <ul class="nav">  
+                    <a class="brand" href="#"></a>  
+                    <li class="dropdown" id="accountmenu">  
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenedores<b class="caret"></b></a>  
+                        <ul class="dropdown-menu">                              
+                        </ul>  
+                    </li>  
+                    <li><a href="avance_diario.php">Consultas e Informes</a></li>  
+                </ul>  
+            </div>  
+        </div>  
+    </div>
     <div class="navbar barra-menu" id="menu2" style="display:none;">  
         <div class="navbar-inner">  
             <div class="container">  
                 <ul class="nav">  
                     <a class="brand" href="#"></a>  
-                    <li class="active"><a href="#">Opcion2</a></li>  
-                    <li><a href="#">Opcion2</a></li>  
-                    <li><a href="#">Opcion2</a></li>  
-                    <li><a href="#">Opcion2</a></li>  
                     <li class="dropdown" id="accountmenu">  
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Opcion2<b class="caret"></b></a>  
-                        <ul class="dropdown-menu">  
-                            <li><a href="#">Sub-Opcion2</a></li>  
-                            <li><a href="#">Sub-Opcion2</a></li>  
-                            <li class="divider"></li>  
-                            <li><a href="#">Sub-Opcion2</a></li>  
-                            <li><a href="#">Sub-Opcion2</a></li>  
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenedores<b class="caret"></b></a>  
+                        <ul class="dropdown-menu">                              
                         </ul>  
                     </li>  
+                    <li><a href="avance_diario.php">Consultas e Informes</a></li>  
                 </ul>  
             </div>  
         </div>  
-    </div>  
+    </div>    
+    <div class="navbar barra-menu" id="menu3" style="display:none;">  
+        <div class="navbar-inner">  
+            <div class="container">  
+                <ul class="nav">  
+                    <a class="brand" href="#"></a>  
+                    <li class="dropdown" id="accountmenu">  
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenedores<b class="caret"></b></a>  
+                        <ul class="dropdown-menu">                              
+                        </ul>  
+                    </li>  
+                    <li><a href="avance_diario.php">Consultas e Informes</a></li>  
+                </ul>  
+            </div>  
+        </div>  
+    </div>    
+    <div class="navbar barra-menu" id="menu4" style="display:none;">  
+        <div class="navbar-inner">  
+            <div class="container">  
+                <ul class="nav">  
+                    <a class="brand" href="#"></a>  
+                    <li class="dropdown" id="accountmenu">  
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenedores<b class="caret"></b></a>  
+                        <ul class="dropdown-menu">                              
+                            <li><a href="avance_diario.php">Control de Avance</a></li>
+                        </ul>  
+                    </li>  
+                    <li><a href="avance_diario.php">Consultas e Informes</a></li>  
+                </ul>  
+            </div>  
+        </div>  
+    </div>
+    <div class="navbar barra-menu" id="menu5" style="display:none;">  
+        <div class="navbar-inner">  
+            <div class="container">  
+                <ul class="nav">  
+                    <a class="brand" href="#"></a>  
+                    <li class="dropdown" id="accountmenu">  
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenedores<b class="caret"></b></a>  
+                        <ul class="dropdown-menu">
+                        </ul>  
+                    </li>  
+                    <li><a href="avance_diario.php">Consultas e Informes</a></li>  
+                </ul>  
+            </div>  
+        </div>  
+    </div>
 </div>
 <?php ?>

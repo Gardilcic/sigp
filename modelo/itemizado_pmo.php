@@ -49,6 +49,7 @@ if ($_POST['funcion'] == "GrabarNuevo") {
     $var1 .= "             id_version, ";
     $var1 .= "             id_unidad, ";
     $var1 .= "             id_usuario, ";
+    $var1 .= "             id_empresas, ";
     $var1 .= "             factor_equivalencia ) ";
     $var1 .= "VALUES      ('$_POST[codigo]', ";
     $var1 .= "             '$_POST[idpadre]', ";
@@ -57,6 +58,7 @@ if ($_POST['funcion'] == "GrabarNuevo") {
     $var1 .= "             '".date('Y-m-d')."', ";
     $var1 .= "             '$_POST[idversion]', ";
     $var1 .= "             '$_POST[idunidad]', ";
+    $var1 .= "             '$_POST[idempresa]', ";
     $var1 .= "             '1', ";
     $var1 .= "             $_POST[factor] ) " ;
 

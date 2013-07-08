@@ -16,7 +16,7 @@ if ($_POST['funcion'] == "ListarProyectos") {
     $cns .= "       fecha_fin , ";
     $cns .= "       monto , ";
     $cns .= "       id_moneda , ";
-    $cns .= "       id_empresa_holding , ";
+    $cns .= "       id_empresa as id_empresa_holding , ";
     $cns .= "       id_mandante , ";
     $cns .= "       id_estados  ";
     $cns .= "FROM sigp.dbo.proyectos";
@@ -62,7 +62,7 @@ if ($_POST['funcion'] == "ListarProyectosCompleto") {
     $var1 .= "       firmante2, ";
     $var1 .= "       id_estados_proyecto, ";
     $var1 .= "       id_mandante, ";
-    $var1 .= "       id_empresa_holding, ";
+    $var1 .= "       id_empresa as id_empresa_holding, ";
     $var1 .= "       id_moneda, ";
     $var1 .= "       monto, ";
     $var1 .= "       fecha_fin, ";
@@ -109,7 +109,7 @@ if ($_POST['funcion'] == "GrabarNuevo") {
     $var1 .= "             fecha_fin, ";
     $var1 .= "             monto, ";
     $var1 .= "             id_moneda, ";
-    $var1 .= "             id_empresa_holding, ";
+    $var1 .= "             id_empresa, ";
     $var1 .= "             id_mandante, ";
     $var1 .= "             id_estados) ";
     $var1 .= "VALUES      ('$_POST[nombre]', ";
@@ -152,7 +152,7 @@ if ($_POST['funcion'] == "GrabarProyecto") {
     $var1 .= "             fecha_fin = '" . $_POST['fechafinal'] . "',";
     $var1 .= "             monto = '" . $_POST['monto'] . "',";
     $var1 .= "             id_moneda = '" . $_POST['idmoneda'] . "',";
-    $var1 .= "             id_empresa_holding = '" . $_POST['idempresa'] . "',";
+    $var1 .= "             id_empresa = '" . $_POST['idempresa'] . "',";
     $var1 .= "             id_mandante = '" . $_POST['idmandante'] . "',";
     $var1 .= "             id_estados = '" . $_POST['idestado'] . "' ";
     $var1 .= " WHERE id = " . $_POST['id'];

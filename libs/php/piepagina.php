@@ -1,4 +1,4 @@
-	<div class="navbar navbar-fixed-bottom">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    	<div class="navbar navbar-fixed-bottom">
       <div class="barra">
         <div class="container" style="width:80%;"></div>
       </div>
@@ -18,6 +18,9 @@
     <script src="libs/js/bootstrap-collapse.js"></script>
     <script src="libs/js/bootstrap-carousel.js"></script>
     <script src="libs/js/bootstrap-typeahead.js"></script>
+
+
+
 
 <script type="text/javascript" src="libs/js/jquery.tablesorter.js"></script>
 <script type="text/javascript" src="libs/js/jquery.tablesorter.widgets.js"></script>
@@ -43,6 +46,21 @@
 			  var id = $newCenterItem.attr('menu');
 			  $('.barra-menu').css('display','none');
 			  $("#"+id).css('display','block');
+                          if(id=="menu1")
+                            $('.navbar-inner').css({ background: "-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cbead3))" });
+                          else if(id=="menu2")
+                            $('.navbar-inner').css({ background: "-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#5cc8e5))" });
+                          else if(id=="menu6")
+                            $('.navbar-inner').css({ background: "-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#479670))" });
+                          else if(id=="menu5")
+                            $('.navbar-inner').css({ background: "-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#8596b8))" });
+                        else if(id=="menu4")
+                            $('.navbar-inner').css({ background: "-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fff587))" });
+                        else if(id=="menu3")
+                            $('.navbar-inner').css({ background: "-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffb424))" });
+                        
+                        
+                        
 			}
 			  // include options like this:
 			  // (use quotes only for string values, and no trailing comma after last option)

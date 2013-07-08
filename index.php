@@ -1,8 +1,8 @@
 <?php
-session_start();
-/* if (isset($_SESSION['status'])) {
-  header('Location: main.php');
-  } */
+    session_start();
+    if (isset($_SESSION['usuario'])) {
+        header('Location: adm_usuarios.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,12 +29,12 @@ session_start();
         require_once('libs/php/encabezado_login.php');
         ?>
         <div style="margin:0 auto; width:500px; margin-top:75px;">
-            
+
             <div class="alert mensajes" style="display: none;">
                 <button type="button" class="close" onclick="$('.alert').hide()">&times;</button>
                 <strong>Aviso! </strong><span id="mensaje"></span>
             </div>
-            
+
             <form name="login" method="post" onSubmit="return false;">
                 <table border="0" style="margin: 0 auto; text-align: center;">
                     <tr>
@@ -49,7 +49,7 @@ session_start();
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="nombre_usuario" id="nombre_usuario" size="13" value="jarisaca" />
+                            <input type="text" name="nombre_usuario" id="nombre_usuario" size="13" value="" />
                         </td>
                     </tr>
                     <tr>
@@ -59,7 +59,7 @@ session_start();
                     </tr>
                     <tr>
                         <td>
-                            <input type="password" name="clave_usuario" id="clave_usuario" size="13" value="ja.2013" />
+                            <input type="password" name="clave_usuario" id="clave_usuario" size="13" value="" />
                         </td>
                     </tr>
                     <tr>
@@ -74,5 +74,5 @@ session_start();
         </div>
     </body>
     <?php include('libs/php/piepagina.php'); ?> 
-    <script type="text/javascript" src="controlador/usuarios.js"></script>
+    <script type="text/javascript" src="controlador/usuarios_login.js"></script>
 </html>
